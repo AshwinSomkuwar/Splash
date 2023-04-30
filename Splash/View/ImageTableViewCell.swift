@@ -19,11 +19,15 @@ class ImageTableViewCell: UITableViewCell {
     var indexPath = IndexPath(row: 0, section: 0)
     var object: ResponseModel = ResponseModel() {
         didSet {
+            self.tickButton.setTitle("", for: UIControl.State.normal)
             if object.isSelected {
                 self.tickButton.setImage(UIImage(named: "selectedButton"), for: .normal)
             } else {
                 self.tickButton.setImage(UIImage(named: "unselectedButton"), for: .normal)
             }
+            
+            self.authorLabel.text = object.author
+            self.urlLabel.text = object.url
         }
     }
     

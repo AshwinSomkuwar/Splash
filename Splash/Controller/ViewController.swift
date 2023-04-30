@@ -73,6 +73,8 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    var currentPage = 0
 
     // MARK: Lifecycle
     override func viewDidLoad() {

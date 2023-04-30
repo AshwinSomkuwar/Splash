@@ -25,14 +25,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, CellButton
         cell.object = object
         cell.indexPath = indexPath
         cell.delegate = self
-        cell.authorLabel.text = object.author
-        cell.urlLabel.text = object.url
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
