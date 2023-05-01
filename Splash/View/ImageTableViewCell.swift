@@ -5,7 +5,7 @@
 //  Created by Ashwin Somkuwar on 28/04/23.
 //
 
-import UIKit
+import SDWebImage
 
 class ImageTableViewCell: UITableViewCell {
 
@@ -19,6 +19,11 @@ class ImageTableViewCell: UITableViewCell {
     var indexPath = IndexPath(row: 0, section: 0)
     var object: ResponseModel = ResponseModel() {
         didSet {
+            let imageId = object.url.components(separatedBy: "photos/")[1]
+            let finalUrlString = "https://source.unsplash.com/" + imageId
+            if let imageUrl = URL(string: finalUrlString) {
+                self.picture.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeholder-image"), options: .continueInBackground)
+            }
             self.tickButton.setTitle("", for: UIControl.State.normal)
             if object.isSelected {
                 self.tickButton.setImage(UIImage(named: "selectedButton"), for: .normal)

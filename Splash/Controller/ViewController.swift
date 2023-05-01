@@ -52,7 +52,8 @@
  https://picsum.photos/v2/list?page=2&limit=20
  */
 
-import UIKit
+import Alamofire
+import SDWebImage
 
 protocol CellButtonTapped: AnyObject {
     func buttonTapped(indexPath: IndexPath, isSelected: Bool)
@@ -80,7 +81,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
-        fetchData()
+        loadRemoteData()
     }
     
     func initialSetup() {
@@ -92,35 +93,44 @@ class ViewController: UIViewController {
     
     // MARK: Actions
     @objc func refreshTableView(sender: UIRefreshControl) {
-        DispatchQueue.main.async {
-            self.imageTableView.reloadData()
-            print("TableView refreshed...")
+        self.refreshControl.beginRefreshing()
+        loadRemoteData()
+    }
+    
+    func loadRemoteData() {
+        requestRemoteData { status, response in
             self.refreshControl.endRefreshing()
+            if status {
+                if self.dataSource.isEmpty {
+                    self.dataSource = response ?? []
+                } else {
+                    self.dataSource.append(contentsOf: response ?? [])
+                }
+            }
         }
     }
     
-    func fetchData() {
-        
-        guard let url = URL(string: urlString) else { return }
-        
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, error in
-            
-            guard let safeData = data else { return }
-            
-            do {
-                let decoder = JSONDecoder()
-                let decodedData = try decoder.decode([ResponseModel].self, from: safeData)
-                print("RESPONSE: ----------------------")
-                print(decodedData)
-
-                self.dataSource = decodedData
-                
-            } catch {
-                print(error.localizedDescription)
+    // Method to fetch remote data with page no and limit
+    func requestRemoteData(_ completion: @escaping (Bool, [ResponseModel]?) -> Void) {
+        let requestPage = currentPage == 0 ? 1 : (currentPage + 1)
+        let requestUrl = "https://picsum.photos/v2/list?page=\(requestPage)&limit=20"
+        if let url = URL(string: requestUrl) {
+            AF.request(url, method: HTTPMethod.get).responseData { response in
+                switch response.result {
+                case let .success(value):
+                    if response.data != nil {
+                        self.currentPage = requestPage
+                        let responseData = try? JSONDecoder().decode([ResponseModel].self, from: value)
+                        completion(true, responseData)
+                    } else {
+                        completion(false, nil)
+                    }
+                case .failure(let _error):
+                    print(_error.localizedDescription)
+                    completion(false, nil)
+                }
             }
         }
-        task.resume()
     }
 }
 

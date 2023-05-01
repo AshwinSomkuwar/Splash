@@ -29,6 +29,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, CellButton
         return cell
     }
     
+    // Pagination logic added here
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == dataSource.count - 1 {
+            if dataSource.count == indexPath.row + 1 {
+                loadRemoteData()
+            } else {
+                print("DATA SOURCE COUNT ", dataSource.count, " INDEXPATH ", indexPath)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let object = dataSource[indexPath.row]
