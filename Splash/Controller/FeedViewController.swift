@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FeedViewController.swift
 //  Splash
 //
 //  Created by Ashwin Somkuwar on 28/04/23.
@@ -59,7 +59,7 @@ protocol CellButtonTapped: AnyObject {
     func buttonTapped(indexPath: IndexPath, isSelected: Bool)
 }
 
-class ViewController: UIViewController {
+class FeedViewController: UIViewController {
     
     // MARK: Properties
     @IBOutlet weak var imageTableView: UITableView!
@@ -81,6 +81,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         loadRemoteData()
     }
     

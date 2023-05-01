@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource, CellButtonTapped {
+extension FeedViewController: UITableViewDelegate, UITableViewDataSource, CellButtonTapped {
     
     func buttonTapped(indexPath: IndexPath, isSelected: Bool) {
         dataSource[indexPath.row].isSelected = isSelected

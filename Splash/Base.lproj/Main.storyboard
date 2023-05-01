@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h5A-3o-Zwg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lvD-87-Wzb">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,7 +12,7 @@
         <!--Feed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Splash" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="BYZ-38-t0r" customClass="FeedViewController" customModule="Splash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,9 +124,50 @@
             </objects>
             <point key="canvasLocation" x="32.824427480916029" y="3.5211267605633805"/>
         </scene>
+        <!--Launch And Hold View Controller-->
+        <scene sceneID="n7m-VI-vJx">
+            <objects>
+                <viewController storyboardIdentifier="LaunchAndHoldViewController" id="lvD-87-Wzb" customClass="LaunchAndHoldViewController" customModule="Splash" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WY4-gd-xMn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook-logo-759" translatesAutoresizingMaskIntoConstraints="NO" id="dkN-uh-Rha">
+                                <rect key="frame" x="29.333333333333343" y="340.66666666666669" width="334.33333333333326" height="170.66666666666669"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170.66999999999999" id="jSA-la-j2f"/>
+                                    <constraint firstAttribute="width" constant="334.32999999999998" id="tRg-WF-jWS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbI-pD-sa1">
+                                <rect key="frame" x="20" y="718" width="353" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2h2-Qk-njE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2h2-Qk-njE" firstAttribute="trailing" secondItem="GbI-pD-sa1" secondAttribute="trailing" constant="20" id="14x-PO-npC"/>
+                            <constraint firstItem="2h2-Qk-njE" firstAttribute="bottom" secondItem="GbI-pD-sa1" secondAttribute="bottom" constant="100" id="8da-ha-jwo"/>
+                            <constraint firstItem="dkN-uh-Rha" firstAttribute="centerY" secondItem="WY4-gd-xMn" secondAttribute="centerY" id="Eiv-ML-wOY"/>
+                            <constraint firstItem="dkN-uh-Rha" firstAttribute="centerX" secondItem="WY4-gd-xMn" secondAttribute="centerX" id="q7L-l5-sFM"/>
+                            <constraint firstItem="GbI-pD-sa1" firstAttribute="leading" secondItem="2h2-Qk-njE" secondAttribute="leading" constant="20" id="zlN-SK-cgF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="timerTextLabel" destination="GbI-pD-sa1" id="iKT-BQ-C6J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zau-8Y-NId" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="754"/>
+        </scene>
     </scenes>
     <resources>
         <image name="background" width="5760" height="3240"/>
+        <image name="facebook-logo-759" width="759" height="422"/>
         <image name="unselectedButton" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
