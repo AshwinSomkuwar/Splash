@@ -26,11 +26,12 @@ class ImageTableViewCell: UITableViewCell {
             }
             self.tickButton.setTitle("", for: UIControl.State.normal)
             if object.isSelected {
-                self.tickButton.setImage(UIImage(named: "selectedButton"), for: .normal)
+                self.tickButton.setImage(UIImage(named: "selectedButton")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
+                self.tickButton.tintColor = UIColor.init(red: 111/255, green: 209/255, blue: 31/255, alpha: 1)
             } else {
-                self.tickButton.setImage(UIImage(named: "unselectedButton"), for: .normal)
+                self.tickButton.setImage(UIImage(named: "unselectedButton")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
+                self.tickButton.tintColor = UIColor.gray
             }
-            
             self.authorLabel.text = object.author
             self.urlLabel.text = object.url
         }

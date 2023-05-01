@@ -41,7 +41,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, CellButton
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         let object = dataSource[indexPath.row]
         
         // If the tick button is disabled, we show an alert
@@ -53,7 +53,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, CellButton
 
         } else {
             // If the tick button is enabled, we show a dialog which shows a description i.e. image URL
-            
             let actionSheet = UIAlertController(title: "Image URL", message: object.url, preferredStyle: .actionSheet)
             let okAction = UIAlertAction(title: "OK", style: .default)
             actionSheet.addAction(okAction)
